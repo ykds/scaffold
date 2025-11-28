@@ -1,0 +1,8 @@
+.DS_Store
+.idea/
+.cursor/
+.vscode/
+*.log
+*.exe
+*.csv
+logs/

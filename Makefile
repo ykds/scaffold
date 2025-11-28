@@ -1,0 +1,3 @@
+.PHONY: lint
+lint:
+	staticcheck -f stylish ./...
