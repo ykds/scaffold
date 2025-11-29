@@ -25,7 +25,7 @@ type DeomResponse struct {
 	Reply string `json:"reply"`
 }
 
-func (d *DemoHandler) Hello(c *gin.Context) {
+func (demo *DemoHandler) Hello(c *gin.Context) {
 	var (
 		err  error
 		req  DemoRequest
