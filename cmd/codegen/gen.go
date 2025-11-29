@@ -28,18 +28,22 @@ type tmpl struct {
 }
 
 func generate(cfg Config) error {
-	handlerDir := filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/handler/%s", strings.ToLower(cfg.Name)))
-	if _, err := os.Stat(handlerDir); os.IsExist(err) {
-		panic(fmt.Sprintf("%s is exists", handlerDir))
+	files := []string{
+		filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/repository/%s/%s.go", strings.ToLower(cfg.Name), strings.ToLower(cfg.Name))),
+		filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/service/%s/%s.go", strings.ToLower(cfg.Name), strings.ToLower(cfg.Name))),
+		filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/handler/%s/%s.go", strings.ToLower(cfg.Name), strings.ToLower(cfg.Name))),
+		filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/handler/%s/router.go", strings.ToLower(cfg.Name))),
 	}
-	if err := os.MkdirAll(handlerDir, 0755); err != nil {
-		return fmt.Errorf("创建目录失败: %w", err)
+	for _, f := range files {
+		if _, err := os.Stat(f); os.IsExist(err) {
+			panic(fmt.Sprintf("%s is exists", f))
+		}
 	}
 
 	// 创建必要的目录
 	tmpls := []tmpl{
-		{name: "repository", template: repoTmpl, path: filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/repository/%s.go", strings.ToLower(cfg.Name)))},
-		{name: "service", template: serviceTmpl, path: filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/service/%s.go", strings.ToLower(cfg.Name)))},
+		{name: "repository", template: repoTmpl, path: filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/repository/%s/%s.go", strings.ToLower(cfg.Name), strings.ToLower(cfg.Name)))},
+		{name: "service", template: serviceTmpl, path: filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/service/%s/%s.go", strings.ToLower(cfg.Name), strings.ToLower(cfg.Name)))},
 		{name: "handler", template: handlerTmpl, path: filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/handler/%s/%s.go", strings.ToLower(cfg.Name), strings.ToLower(cfg.Name)))},
 		{name: "handler", template: routerTmpl, path: filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/handler/%s/router.go", strings.ToLower(cfg.Name)))},
 	}

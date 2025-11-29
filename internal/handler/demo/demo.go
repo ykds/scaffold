@@ -3,17 +3,17 @@ package demo
 import (
 	"fmt"
 	"scaffold/errors"
-	"scaffold/internal/service"
+	"scaffold/internal/service/demo"
 	"scaffold/response"
 
 	"github.com/gin-gonic/gin"
 )
 
 type DemoHandler struct {
-	demoSvc *service.DemoService
+	demoSvc *demo.DemoService
 }
 
-func NewDemoHandler(demoSvc *service.DemoService) *DemoHandler {
+func NewDemoHandler(demoSvc *demo.DemoService) *DemoHandler {
 	return &DemoHandler{demoSvc: demoSvc}
 }
 

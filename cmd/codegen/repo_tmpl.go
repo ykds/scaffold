@@ -1,6 +1,6 @@
 package main
 
-const repoTmpl = `package repository
+const repoTmpl = `package {{.Name | toLower}}
 
 import (
 	"scaffold/pkg/mongodb"
@@ -15,6 +15,7 @@ const {{.Name | toLower}}Col = "{{.Name | toLower}}"
 type {{.Name}} struct {
 }
 
+// 接口定义
 type {{.Name}}Repository interface {
 }
 
@@ -30,4 +31,7 @@ func New{{.Name}}Repository(mgo *mongodb.Mongo) {{.Name}}Repository {
 	}
 	return r
 }
+
+// 接口具体实现
+
 `

@@ -3,18 +3,21 @@ package main
 const handlerTmpl = `package {{.Name | toLower}}
 
 import (
-	"scaffold/internal/service"
+	"scaffold/internal/service/{{.Name | toLower}}"
 )
 
 type {{.Name}}Handler struct {
-	{{.Name | toLower}}Svc *service.{{.Name}}Service
+	{{.Name | toLower}}Svc *{{.Name | toLower}}.{{.Name}}Service
 }
 
-func New{{.Name}}Handler({{.Name | toLower}}Svc *service.{{.Name}}Service) *{{.Name}}Handler {
+func New{{.Name}}Handler({{.Name | toLower}}Svc *{{.Name | toLower}}.{{.Name}}Service) *{{.Name}}Handler {
 	return &{{.Name}}Handler{
 		{{.Name | toLower}}Svc: {{.Name | toLower}}Svc,
 	}
 }
+
+// 控制层代码实现
+
 `
 
 const routerTmpl = `package {{.Name | toLower}}
