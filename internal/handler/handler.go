@@ -28,7 +28,7 @@ func InitHandlers(s *service.Services) {
 	registerHandler(h)
 }
 
-func registerHandler(h Handler) {
+func registerHandler(h Handlers) {
 	v := reflect.ValueOf(h)
 	for i := range v.NumField() {
 		field := v.Field(i)

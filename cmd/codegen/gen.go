@@ -30,12 +30,12 @@ type tmpl struct {
 }
 
 func generate(cfg Config) error {
-	snakeName := camelToSnake(cfg.Name)
+	lowerName := strings.ToLower(cfg.Name)
 	files := []string{
-		filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/repository/%s/%s.go", snakeName, snakeName)),
-		filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/service/%s/%s.go", snakeName, snakeName)),
-		filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/handler/%s/%s.go", snakeName, snakeName)),
-		filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/handler/%s/router.go", snakeName)),
+		filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/repository/%s/%s.go", lowerName, lowerName)),
+		filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/service/%s/%s.go", lowerName, lowerName)),
+		filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/handler/%s/%s.go", lowerName, lowerName)),
+		filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/handler/%s/router.go", lowerName)),
 	}
 	for _, f := range files {
 		if _, err := os.Stat(f); os.IsExist(err) {
@@ -45,10 +45,10 @@ func generate(cfg Config) error {
 
 	// 创建必要的目录
 	tmpls := []tmpl{
-		{name: "repository", template: repoTmpl, path: filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/repository/%s/%s.go", snakeName, snakeName))},
-		{name: "service", template: serviceTmpl, path: filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/service/%s/%s.go", snakeName, snakeName))},
-		{name: "handler", template: handlerTmpl, path: filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/handler/%s/%s.go", snakeName, snakeName))},
-		{name: "handler", template: routerTmpl, path: filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/handler/%s/router.go", snakeName))},
+		{name: "repository", template: repoTmpl, path: filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/repository/%s/%s.go", lowerName, lowerName))},
+		{name: "service", template: serviceTmpl, path: filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/service/%s/%s.go", lowerName, lowerName))},
+		{name: "handler", template: handlerTmpl, path: filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/handler/%s/%s.go", lowerName, lowerName))},
+		{name: "handler", template: routerTmpl, path: filepath.Join(cfg.OutputPath, fmt.Sprintf("internal/handler/%s/router.go", lowerName))},
 	}
 	for _, f := range tmpls {
 		if _, err := os.Stat(f.path); os.IsExist(err) {
@@ -82,7 +82,7 @@ func generate(cfg Config) error {
 			Name:       cfg.Name,
 			LowerName:  firstLetterToLower(cfg.Name),
 			HyphenName: camelToHyphen(cfg.Name),
-			SnakeName:  snakeName,
+			SnakeName:  camelToSnake(cfg.Name),
 		}
 		if err := tmpl.Execute(f, data); err != nil {
 			return fmt.Errorf("生成%s代码失败: %w", t.name, err)

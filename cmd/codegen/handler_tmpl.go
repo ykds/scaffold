@@ -1,16 +1,16 @@
 package main
 
-const handlerTmpl = `package {{.SnakeName}}
+const handlerTmpl = `package {{.Name | toLower}}
 
 import (
-	"scaffold/internal/service/{{.SnakeName}}"
+	"scaffold/internal/service/{{.Name | toLower}}"
 )
 
 type {{.Name}}Handler struct {
-	{{.LowerName}}Svc *{{.SnakeName}}.{{.Name}}Service
+	{{.LowerName}}Svc *{{.Name | toLower}}.{{.Name}}Service
 }
 
-func New{{.Name}}Handler({{.LowerName}}Svc *{{.SnakeName}}.{{.Name}}Service) *{{.Name}}Handler {
+func New{{.Name}}Handler({{.LowerName}}Svc *{{.Name | toLower}}.{{.Name}}Service) *{{.Name}}Handler {
 	return &{{.Name}}Handler{
 		{{.LowerName}}Svc: {{.LowerName}}Svc,
 	}
@@ -20,7 +20,7 @@ func New{{.Name}}Handler({{.LowerName}}Svc *{{.SnakeName}}.{{.Name}}Service) *{{
 
 `
 
-const routerTmpl = `package {{.SnakeName}}
+const routerTmpl = `package {{.Name | toLower}}
 
 import "github.com/gin-gonic/gin"
 

@@ -1,6 +1,6 @@
 package main
 
-const repoTmpl = `package {{.SnakeName}}
+const repoTmpl = `package {{.Name | toLower}}
 
 import (
 	"scaffold/pkg/mongodb"

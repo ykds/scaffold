@@ -58,7 +58,7 @@ func Error(c *gin.Context, err error) {
 			Message: e.Message(),
 		})
 	} else {
-		logger.Errorf("method: %s, url: %s, form: %s, body: %s, err: %+v", method, path, form, body, e)
+		logger.Errorf("method: %s, url: %s, form: %s, body: %s, err: %+v", method, path, form, body, err)
 		c.JSON(http.StatusOK, Response{
 			Status:  errors.InternalError.Code(),
 			Message: errors.InternalError.Message(),

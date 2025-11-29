@@ -13,9 +13,9 @@ type Services struct {
 }
 
 func NewServices(mongo *mongodb.Mongo, rdb *redis.Redis, taos *tdengine.Taos) *Services {
-	demoRepo := demoRepo.NewDemoRepository(mongo)
+	demoR := demoRepo.NewDemoRepository(mongo)
 
 	return &Services{
-		DemoService: demo.NewDemoService(demoRepo),
+		DemoService: demo.NewDemoService(demoR),
 	}
 }

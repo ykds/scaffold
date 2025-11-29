@@ -4,6 +4,8 @@
 ## Quick Start
 1. Clone 仓库
 > git clone https://github.com/ykds/scaffold.git
+> 
+> cd scaffold && go mod tidy
 
 2. 根据实情况修改配置文件
 > cp config-sample.yaml config.yaml
