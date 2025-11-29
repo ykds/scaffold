@@ -1,6 +1,6 @@
 package main
 
-const repoTmpl = `package {{.Name | toLower}}
+const repoTmpl = `package {{.SnakeName}}
 
 import (
 	"scaffold/pkg/mongodb"
@@ -9,7 +9,7 @@ import (
 )
 
 // 表名
-const {{.Name | toLower}}Col = "{{.Name | toLower}}"
+const {{.LowerName}}Col = "{{.SnakeName}}"
 
 // 表Model
 type {{.Name}} struct {
@@ -19,15 +19,15 @@ type {{.Name}} struct {
 type {{.Name}}Repository interface {
 }
 
-type {{.Name | toLower}}Repository struct {
+type {{.LowerName}}Repository struct {
 	mgo *mongodb.Mongo
 	col *mongo.Collection
 }
 
 func New{{.Name}}Repository(mgo *mongodb.Mongo) {{.Name}}Repository {
-	r := &{{.Name | toLower}}Repository{
+	r := &{{.LowerName}}Repository{
 		mgo: mgo,
-		col: mgo.Database.Collection({{.Name | toLower}}Col),
+		col: mgo.Database.Collection({{.LowerName}}Col),
 	}
 	return r
 }

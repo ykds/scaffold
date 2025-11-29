@@ -1,16 +1,16 @@
 package main
 
-const serviceTmpl = `package {{.Name | toLower}}
+const serviceTmpl = `package {{.SnakeName}}
 
-import "scaffold/internal/repository/{{.Name | toLower}}"
+import "scaffold/internal/repository/{{.SnakeName}}"
 
 type {{.Name}}Service struct {
-	{{.Name | toLower}}Repo {{.Name | toLower}}.{{.Name}}Repository
+	{{.LowerName}}Repo {{.SnakeName}}.{{.Name}}Repository
 }
 
-func New{{.Name}}Service({{.Name | toLower}}Repo {{.Name | toLower}}.{{.Name}}Repository) *{{.Name}}Service {
+func New{{.Name}}Service({{.LowerName}}Repo {{.SnakeName}}.{{.Name}}Repository) *{{.Name}}Service {
 	return &{{.Name}}Service{
-		{{.Name | toLower}}Repo: {{.Name | toLower}}Repo,
+		{{.LowerName}}Repo: {{.LowerName}}Repo,
 	}
 }
 

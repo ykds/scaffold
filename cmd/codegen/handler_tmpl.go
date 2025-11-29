@@ -1,18 +1,18 @@
 package main
 
-const handlerTmpl = `package {{.Name | toLower}}
+const handlerTmpl = `package {{.SnakeName}}
 
 import (
-	"scaffold/internal/service/{{.Name | toLower}}"
+	"scaffold/internal/service/{{.SnakeName}}"
 )
 
 type {{.Name}}Handler struct {
-	{{.Name | toLower}}Svc *{{.Name | toLower}}.{{.Name}}Service
+	{{.LowerName}}Svc *{{.SnakeName}}.{{.Name}}Service
 }
 
-func New{{.Name}}Handler({{.Name | toLower}}Svc *{{.Name | toLower}}.{{.Name}}Service) *{{.Name}}Handler {
+func New{{.Name}}Handler({{.LowerName}}Svc *{{.SnakeName}}.{{.Name}}Service) *{{.Name}}Handler {
 	return &{{.Name}}Handler{
-		{{.Name | toLower}}Svc: {{.Name | toLower}}Svc,
+		{{.LowerName}}Svc: {{.LowerName}}Svc,
 	}
 }
 
@@ -20,16 +20,16 @@ func New{{.Name}}Handler({{.Name | toLower}}Svc *{{.Name | toLower}}.{{.Name}}Se
 
 `
 
-const routerTmpl = `package {{.Name | toLower}}
+const routerTmpl = `package {{.SnakeName}}
 
 import "github.com/gin-gonic/gin"
 
-func ({{.Name | toLower}} *{{.Name}}Handler) Name() string {
-	return "{{.Name | toLower}}"
+func ({{.LowerName}} *{{.Name}}Handler) Name() string {
+	return "{{.LowerName}}"
 }
 
-func ({{.Name | toLower}} *{{.Name}}Handler) RegisterRouter(engine *gin.RouterGroup) {
-	r := engine.Group("/{{.Name | toLower}}")
+func ({{.LowerName}} *{{.Name}}Handler) RegisterRouter(engine *gin.RouterGroup) {
+	_ = engine.Group("/{{.HyphenName}}")
 	{
 		// define router here
 	}

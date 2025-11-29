@@ -150,7 +150,7 @@ http响应工具的封装。
 为了减少工作量和统一代码结构，提供了 `handler`、`service`、`repository` 3层代码的生成，目前只支持新增一个模块时生成代码。
 
 代码生成的工具位于`cmd/codegen`下，生成方式:
-> make gen module="" // 以首字母大写填写新增的模块名
+> make gen module="" // 以驼峰格式填写新增的模块名
 
 如：
 > make gen module="Test"
