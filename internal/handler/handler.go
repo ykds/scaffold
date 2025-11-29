@@ -2,8 +2,8 @@ package handler
 
 import (
 	"reflect"
-	"scaffold/handler/demo"
-	"scaffold/service"
+	"scaffold/internal/handler/demo"
+	"scaffold/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

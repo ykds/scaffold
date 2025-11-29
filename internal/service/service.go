@@ -1,10 +1,10 @@
 package service
 
 import (
+	"scaffold/internal/repository"
 	"scaffold/pkg/mongodb"
 	"scaffold/pkg/redis"
 	"scaffold/pkg/tdengine"
-	"scaffold/repository"
 )
 
 type Services struct {
@@ -13,7 +13,7 @@ type Services struct {
 
 func NewServices(mongo *mongodb.Mongo, rdb *redis.Redis, taos *tdengine.Taos) *Services {
 	demoRepo := repository.NewDemoRepository(mongo)
-	
+
 	return &Services{
 		DemoService: NewDemoService(demoRepo),
 	}

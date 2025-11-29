@@ -1,7 +1,0 @@
-server:
-  debug: true
-  port: ":8080"
-
-logger:
-  mode: console
-  level: info

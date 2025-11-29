@@ -1,0 +1,39 @@
+server:
+  debug: true
+  port: ":8080"
+  read_timeout: 10
+  write_timeout: 10
+
+logger:
+  mode: file
+  level: info
+  filename: "err.log"
+  max_size: 10
+  max_age: 3
+  compress: false
+  max_backups: 2
+
+redis:
+  host: "localhost"
+  port: "6379"
+  password: ""
+  db: 0
+
+taos:
+  protocal: http
+  host: "localhost"
+  port: ""
+  username: ""
+  password: ""
+  db_name: ""
+  max_open_conns: 100
+  conn_max_life_time_second: 3600
+  max_idle_conns: 10
+  slow_sql_millis: 1000
+
+mongo:
+  hosts: ""
+  username: ""
+  password: ""
+  db_name: ""
+  repl_name: ""

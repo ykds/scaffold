@@ -1,6 +1,6 @@
 package service
 
-import "scaffold/repository"
+import "scaffold/internal/repository"
 
 type DemoService struct {
 	demoRepo repository.DemoRepository
