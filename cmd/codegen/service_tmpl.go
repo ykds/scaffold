@@ -1,7 +1,6 @@
 package main
 
-const serviceTmpl = `
-package service
+const serviceTmpl = `package service
 
 import "scaffold/internal/repository"
 

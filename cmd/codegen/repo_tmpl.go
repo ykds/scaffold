@@ -1,7 +1,6 @@
 package main
 
-const repoTmpl = `
-package repository
+const repoTmpl = `package repository
 
 import (
 	"scaffold/pkg/mongodb"

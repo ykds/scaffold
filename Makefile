@@ -3,5 +3,6 @@ lint:
 	staticcheck -f stylish ./...
 
 .PHONY: gen
+target ?= "."
 gen:
 	go run ./cmd/codegen gen -m $(module) -t $(target)

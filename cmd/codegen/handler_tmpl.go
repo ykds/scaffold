@@ -1,15 +1,9 @@
 package main
 
-const handlerTmpl = `
-package {{.Name | toLower}}
+const handlerTmpl = `package {{.Name | toLower}}
 
 import (
-	"fmt"
-	"scaffold/errors"
 	"scaffold/internal/service"
-	"scaffold/response"
-
-	"github.com/gin-gonic/gin"
 )
 
 type {{.Name}}Handler struct {
@@ -23,8 +17,7 @@ func New{{.Name}}Handler({{.Name | toLower}}Svc *service.{{.Name}}Service) *{{.N
 }
 `
 
-const routerTmpl = `
-package {{.Name | toLower}}
+const routerTmpl = `package {{.Name | toLower}}
 
 import "github.com/gin-gonic/gin"
 
