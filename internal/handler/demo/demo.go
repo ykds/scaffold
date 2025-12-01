@@ -1,7 +1,6 @@
 package demo
 
 import (
-	"fmt"
 	"scaffold/errors"
 	"scaffold/internal/service/demo"
 	"scaffold/response"
@@ -35,7 +34,7 @@ func (demo *DemoHandler) Hello(c *gin.Context) {
 		if err != nil {
 			response.Error(c, err)
 		} else {
-			response.Sucess(c, resp)
+			response.Success(c, resp)
 		}
 	}()
 
@@ -47,5 +46,5 @@ func (demo *DemoHandler) Hello(c *gin.Context) {
 		err = errors.BadParameters
 		return
 	}
-	resp.Reply = fmt.Sprintf("Hi, %s", req.Name)
+	resp.Reply, err = demo.demoSvc.Hello(c.Request.Context(), req.Name)
 }

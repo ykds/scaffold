@@ -16,7 +16,7 @@ type Response struct {
 	Data    any    `json:"data,omitempty"`
 }
 
-func Sucess(c *gin.Context, data any) {
+func Success(c *gin.Context, data any) {
 	c.JSON(http.StatusOK, Response{
 		Status:  http.StatusOK,
 		Message: "Success",
@@ -26,7 +26,7 @@ func Sucess(c *gin.Context, data any) {
 
 func Error(c *gin.Context, err error) {
 	if err == nil {
-		Sucess(c, nil)
+		Success(c, nil)
 		return
 	}
 
