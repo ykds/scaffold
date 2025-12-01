@@ -7,7 +7,7 @@
 > 
 > cd scaffold && go mod tidy
 
-2. 根据实情况修改配置文件
+1. 修改配置文件, 补充数据库连接信息
 > cp config-sample.yaml config.yaml
 ```yaml
 // Server 配置
@@ -62,6 +62,9 @@ mongo:
 
 2. 有 TDEngine 环境
 > go run main.go
+
+## Test
+> curl http://localhost:8080/demo?name=emaldo
 
 
 ## Design

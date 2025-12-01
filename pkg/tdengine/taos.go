@@ -7,7 +7,7 @@ import (
 )
 
 type Config struct {
-	Protocal              string `json:"protocal"`
+	Protocal              string `json:"protocal" yaml:"protocal"`
 	Host                  string `json:"host" yaml:"host"`
 	Port                  string `json:"port" yaml:"port"`
 	Username              string `json:"username" yaml:"username"`
@@ -24,7 +24,7 @@ type Taos struct {
 }
 
 func NewTaos(cfg Config) *Taos {
-	dsn := fmt.Sprintf("%s:%s@%s(%s:%s)/%s", cfg.Username, cfg.Password, cfg.Protocal, cfg.Host, cfg.Password, cfg.DBName)
+	dsn := fmt.Sprintf("%s:%s@%s(%s:%s)/%s", cfg.Username, cfg.Password, cfg.Protocal, cfg.Host, cfg.Port, cfg.DBName)
 	driverName := "taosSql"
 	if cfg.Protocal == "http" {
 		driverName = "taosRestful"
